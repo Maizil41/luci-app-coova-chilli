@@ -45,23 +45,34 @@ jobs:
           git clone -q https://github.com/${{ github.repository }} sdk/package/tmp
           mv sdk/package/tmp/${PKG_NAME} sdk/package/
           rm -rf sdk/package/tmp
-            
-      - name: ⚙️ Configure & compile IPK
-        env:
-          PKG_NAME: ${{ env.PKG_NAME }}
-        run: |
-          echo "🔧 Configuring SDK"
-          cd sdk
-          ./scripts/feeds update -a
-          ./scripts/feeds install -a
 
-          make defconfig
+      - name: 📡 Set up SDK feeds
+        run: |
+          echo -e "\033[34m🔍 Updating SDK feeds \033[0m"
+          cd sdk
+          ./scripts/feeds update -a > /dev/null 2>&1
+
+          echo -e "\033[34m🔗 Installing SDK feeds \033[0m"
+          ./scripts/feeds install -a > /dev/null 2>&1
+
+      - name: ⚙️ Configure & compile IPK
+        run: |
+          echo -e "\033[34m🔧 Configuring SDK \033[0m"
+          cd sdk && make defconfig > /dev/null 2>&1
           rm -rf feeds/luci/contrib/package/csstidy
           sed -i '/^CONFIG_LUCI_JSMIN=/d' .config
           sed -i '/^CONFIG_LUCI_CSSTIDY=/d' .config
 
-          echo "🔨 Compiling ${PKG_NAME} package"
-          make package/${PKG_NAME}/{clean,compile} -j$(nproc) V=s
+          echo -e "\033[34m🔨 Compiling ${PKG_NAME} package \033[0m"
+          make package/${PKG_NAME}/{clean,compile} -j$(nproc) V=s > /dev/null 2>&1
+
+          echo -e "\033[34m📦 Compilation completed: \033[0m"
+          PKG_PATH=$(find bin/packages/x86_64/luci/ -name 'luci-app-*.ipk')
+          PKG_FILE=$(basename $PKG_PATH)
+          echo "PKG_PATH=sdk/$PKG_PATH" >> $GITHUB_ENV
+          echo "PKG_FILE=$PKG_FILE" >> $GITHUB_ENV
+          echo -e "\033[34m\t📂 Package path:\033[37m $PKG_PATH \033[0m"
+          echo -e "\033[34m\t📄 Package file:\033[37m $PKG_FILE \033[0m"
 
       - name: 🚀 Generate new tag & release
         uses: softprops/action-gh-release@v2
