@@ -13,6 +13,12 @@
 <hr/>
 
 # Preview
-![image](https://github.com/maizil41/luci-app-coova-chilli/)
+![image](/Images/1.PNG)
 
-![image](https://github.com/maizil41/luci-app-coova-chilli/)
+![image](/Images/2.PNG)
+
+![image](/Images/3.PNG)
+
+![image](/Images/4.PNG)
+
+
