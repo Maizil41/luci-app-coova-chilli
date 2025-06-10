@@ -1,0 +1,30 @@
+{
+	"admin/services/coova": {
+		"title": "Coova-Chilli",
+		"order": 50,
+		"action": {
+			"type": "firstchild"
+		},
+		"depends": {
+			"uci": { "chilli": true }
+		}
+	},
+
+	"admin/services/coova/setting": {
+		"title": "Settings",
+		"order": 10,
+		"action": {
+			"type": "view",
+			"path": "coova/setting"
+		}
+	},
+	
+	"admin/services/coova/logs": {
+		"title": "Logs",
+		"order": 20,
+		"action": {
+			"type": "view",
+			"path": "coova/logs"
+		}
+	}
+}
