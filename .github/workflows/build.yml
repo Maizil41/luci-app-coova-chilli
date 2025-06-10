@@ -52,7 +52,7 @@ jobs:
         run: |
           echo "🔧 Configuring SDK"
           cd sdk
-
+          echo "src-git luci https://github.com/openwrt/luci" >> feeds.conf.default
           ./scripts/feeds update -a
           ./scripts/feeds install -a
 
