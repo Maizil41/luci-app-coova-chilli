@@ -61,7 +61,6 @@ jobs:
           sed -i '/^CONFIG_LUCI_CSSTIDY=/d' .config
 
           echo "🔨 Compiling ${PKG_NAME} package"
-          make package/${PKG_NAME}/clean V=s
           make package/${PKG_NAME}/{clean,compile} -j$(nproc) V=s
 
       - name: 🚀 Generate new tag & release
