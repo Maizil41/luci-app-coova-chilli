@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - 'luci-app-coova-chilli/Makefile'
+      - 'luci-app-coovachilli/Makefile'
   workflow_dispatch:
 
 jobs:
@@ -26,7 +26,7 @@ jobs:
           sudo -E apt-get clean > /dev/null 2>&1
           
           echo -e "\033[34m🔧 Configuring environment \033[0m"
-          PKG_NAME=luci-app-coova-chilli
+          PKG_NAME=luci-app-coovachilli
           PKG_VERSION=$(grep 'PKG_VERSION:=' $PKG_NAME/Makefile | awk -F '=' '{print $2}' | tr -d ' ')
           export TERM=xterm
           echo "PKG_VERSION=$PKG_VERSION" >> $GITHUB_ENV
@@ -52,7 +52,6 @@ jobs:
         run: |
           echo "🔧 Configuring SDK"
           cd sdk
-          echo "src-git luci https://github.com/openwrt/luci" >> feeds.conf.default
           ./scripts/feeds update -a
           ./scripts/feeds install -a
 
