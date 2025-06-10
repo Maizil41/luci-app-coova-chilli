@@ -63,7 +63,7 @@ jobs:
 
           echo "🔨 Compiling ${PKG_NAME} package"
           make package/${PKG_NAME}/clean V=s
-          make package/${PKG_NAME}/compile -j$(nproc) V=s
+          make package/${PKG_NAME}/{clean,compile} -j$(nproc) V=s
 
       - name: 🚀 Generate new tag & release
         uses: softprops/action-gh-release@v2
