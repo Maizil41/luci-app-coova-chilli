@@ -75,7 +75,7 @@ jobs:
           echo -e "\033[34m\t📄 Package file:\033[37m $PKG_FILE \033[0m"
 
       - name: 🚀 Generate new tag & release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
