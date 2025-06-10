@@ -1,0 +1,4 @@
+#!/bin/sh
+
+uci rename chilli.@chilli[0]=settings
+uci commit chilli
