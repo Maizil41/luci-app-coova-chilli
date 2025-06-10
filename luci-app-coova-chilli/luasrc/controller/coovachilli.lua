@@ -48,7 +48,7 @@ function action_restart()
 end
 function get_log_content()
     local cmd = "logread | grep chilli"
-    local f = io.popen(cmd, "r")  -- Gunakan io.popen, bukan io.open
+    local f = io.popen(cmd, "r")
     if not f then
         luci.http.status(500, "Failed to execute logread command")
         return
@@ -56,7 +56,7 @@ function get_log_content()
 
     local lines = {}
     for line in f:lines() do
-        table.insert(lines, 1, line) -- Baris dibalik urutannya (paling baru di atas)
+        table.insert(lines, 1, line)
     end
     f:close()
 
