@@ -5,7 +5,7 @@
 include $(TOPDIR)/rules.mk
 
 LUCI_TITLE:=LuCI Support for Coova-Chilli.
-LUCI_DEPENDS:=+luci
+LUCI_DEPENDS:=+luci +coova-chilli
 LUCI_DESCRIPTION:=This package contains LuCI configuration pages for coovachilli.
 LUCI_MAINTAINER:=Maizil41 <https://github.com/maizil41>
 
