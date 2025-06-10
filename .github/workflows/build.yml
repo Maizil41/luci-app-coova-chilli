@@ -66,7 +66,7 @@ jobs:
       - name: 🚀 Generate new tag & release
         uses: softprops/action-gh-release@v2
         env:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           name: ${{ env.PKG_NAME }}
           tag_name: ${{ env.PKG_VERSION }}
@@ -74,6 +74,4 @@ jobs:
           prerelease: false
           files: ${{ env.PKG_PATH }}
           body: |
-            ### Changelog ${{ env.PKG_VERSION }}:
-
-            **📦 New build of ${{ env.PKG_NAME }}**
+            ### V ${{ env.PKG_VERSION }}
