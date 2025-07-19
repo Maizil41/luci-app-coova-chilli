@@ -2,3 +2,7 @@
 
 uci rename chilli.@chilli[0]=settings
 uci commit chilli
+
+sleep 1
+
+rm -f /etc/chilli/up.sh && mv /root/up.sh /etc/chilli/ && chmod +x /etc/chilli/up.sh
